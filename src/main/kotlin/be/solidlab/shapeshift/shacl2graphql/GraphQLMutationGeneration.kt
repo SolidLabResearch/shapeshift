@@ -11,12 +11,14 @@ import org.apache.jena.shacl.parser.PropertyShape
 import org.apache.jena.shacl.vocabulary.SHACL
 import java.util.*
 
-//import org.gradle.configurationcache.extensions.capitalized
 
 internal fun generateMutations(context: ParseContext, typesMap: Map<String, GraphQLObjectType>): GraphQLObjectType {
+
+
     return GraphQLObjectType.newObject()
         .name("Mutation")
-        .fields(context.allShapes.flatMap { shape ->
+        .fields(context.allShapes.filter { shape -> context.getShapeConfig(shape.shapeNode).mutation }
+            .flatMap { shape ->
             shape as NodeShape
             val shapeName = parseName(shape.shapeNode, context)
             listOf(

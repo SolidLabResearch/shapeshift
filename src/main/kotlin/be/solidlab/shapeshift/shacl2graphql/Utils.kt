@@ -57,14 +57,14 @@ internal fun propertyNameFromPath(path: String): String {
 
 internal data class ParseContext(
     val allShapes: Shapes,
-    val shapeImports: Map<Node, ShapeConfig>,
+    val shapeConfigs: Map<Node, ShapeConfig>,
     val nodeShape: NodeShape? = null
 ) {
 
     fun getShapeConfig(subject: Node): ShapeConfig {
         val importNode = allShapes.graph.find(subject, importedFrom, Node.ANY).toList()
             .firstOrNull()?.`object`
-        return shapeImports[importNode]!!
+        return shapeConfigs[importNode]!!
     }
 
 }
