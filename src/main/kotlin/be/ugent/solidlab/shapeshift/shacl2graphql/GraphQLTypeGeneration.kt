@@ -1,4 +1,4 @@
-package be.solidlab.shapeshift.shacl2graphql
+package be.ugent.solidlab.shapeshift.shacl2graphql
 
 import graphql.Scalars
 import graphql.schema.*

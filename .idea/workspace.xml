@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="shapes using URI's instead of from filesystem + no mutations works">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/be/solidlab/shapeshift/shacl2graphql/SHACLToGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/be/solidlab/shapeshift/shacl2graphql/SHACLToGraphQL.kt" afterDir="false" />
+    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="refactors related to publishing v 0.1">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,12 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="shapeshift" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -57,7 +62,15 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="trunk" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2VyOGjdd9ZZ4eKeQK34sfbeqpdu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -76,10 +89,11 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -89,7 +103,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/be/solidlab/shapeshift/typegen" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CatalogTest">
+  <component name="RunManager" selected="Gradle.shapeshift [publishShapeshiftPublicationToSonatypeRepository]">
     <configuration name="CatalogTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -104,54 +118,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;CatalogTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="CatalogTest.testCheckCatalog" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;CatalogTest.testCheckCatalog&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="CatalogTest.testFromCatalog" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;CatalogTest.testFromCatalog&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -210,13 +176,57 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="shapeshift [generatePomFileForShapeshiftPublication]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="generatePomFileForShapeshiftPublication" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="shapeshift [publishShapeshiftPublicationToSonatypeRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishShapeshiftPublicationToSonatypeRepository" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.shapeshift [publishShapeshiftPublicationToSonatypeRepository]" />
+        <item itemvalue="Gradle.shapeshift [generatePomFileForShapeshiftPublication]" />
         <item itemvalue="Gradle.CatalogTest" />
         <item itemvalue="Gradle.CatalogTest.testFromRandomUri" />
         <item itemvalue="Gradle.CatalogTest.testFromFileSystem" />
-        <item itemvalue="Gradle.CatalogTest.testFromCatalog" />
-        <item itemvalue="Gradle.CatalogTest.testCheckCatalog" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +239,8 @@
       <option name="presentableId" value="Default" />
       <updated>1695804763304</updated>
       <workItem from="1695804764323" duration="12521000" />
-      <workItem from="1697018602826" duration="11023000" />
+      <workItem from="1697018602826" duration="11335000" />
+      <workItem from="1697543576822" duration="4774000" />
     </task>
     <task id="LOCAL-00001" summary="shapes using URI's instead of from filesystem + no mutations works">
       <created>1697035691486</created>
@@ -238,7 +249,28 @@
       <option name="project" value="LOCAL" />
       <updated>1697035691486</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="shapes using URI's instead of from filesystem + no mutations works">
+      <created>1697035941636</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697035941636</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactors related to publishing v 0.1">
+      <created>1697542982004</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697542982004</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactors related to publishing v 0.1">
+      <created>1697544711797</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697544711797</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +281,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="version/v0.1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -257,6 +301,38 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="shapes using URI's instead of from filesystem + no mutations works" />
-    <option name="LAST_COMMIT_MESSAGE" value="shapes using URI's instead of from filesystem + no mutations works" />
+    <MESSAGE value="refactors related to publishing v 0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactors related to publishing v 0.1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>124</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>127</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>129</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>130</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>128</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

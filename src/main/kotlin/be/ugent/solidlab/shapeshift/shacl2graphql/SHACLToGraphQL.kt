@@ -1,10 +1,9 @@
-package be.solidlab.shapeshift.shacl2graphql
+package be.ugent.solidlab.shapeshift.shacl2graphql
 
 
 import graphql.schema.GraphQLDirective
 import graphql.schema.GraphQLSchema
 import graphql.schema.idl.SchemaPrinter
-import org.apache.jena.graph.Node
 import org.apache.jena.graph.NodeFactory
 import org.apache.jena.graph.Triple
 import org.apache.jena.riot.RDFDataMgr
@@ -19,8 +18,18 @@ import java.net.URLEncoder
 
 internal val importedFrom = NodeFactory.createURI("https://solidlab.be/vocab/importedFrom")
 
+
+
 object SHACLToGraphQL {
-    fun getSchema(config : ShiftConfig): String {
+
+    /**
+     * Main function to transform SHACL shapes into a GraphQL Schema
+     *
+     * @param config the Context object containing the necessary configuration for the transformation.
+     * @return a GraphQL schema in string form.
+     *
+     */
+    fun getSchema(config : Context): String {
         val graph = GraphFactory.createDefaultGraph()
         config.shapeConfigs.forEach { (uri, _) ->
             println("  --> Importing ${uri} into graph")

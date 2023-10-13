@@ -1,13 +1,13 @@
-import be.solidlab.shapeshift.shacl2graphql.SHACLToGraphQL.checkCatalog
-import be.solidlab.shapeshift.shacl2graphql.SHACLToGraphQL.getSchema
-import be.solidlab.shapeshift.shacl2graphql.ShapeConfig
-import be.solidlab.shapeshift.shacl2graphql.ShiftConfig
+import be.ugent.solidlab.shapeshift.shacl2graphql.SHACLToGraphQL.checkCatalog
+import be.ugent.solidlab.shapeshift.shacl2graphql.SHACLToGraphQL.getSchema
+import be.ugent.solidlab.shapeshift.shacl2graphql.ShapeConfig
+import be.ugent.solidlab.shapeshift.shacl2graphql.Context
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
 
-class CatalogTest {
+class URITest {
 
 
 
@@ -29,7 +29,7 @@ class CatalogTest {
         val catalogURL = "https://catalog.solidlab.be"
         val existingId = "https://data.vlaanderen.be/shacl/adresregister-SHACL.ttl"
 
-        val schema = getSchema(ShiftConfig(catalogURL, false, mapOf(pair = Pair(existingId, ShapeConfig(true, listOf())))))
+        val schema = getSchema(Context(catalogURL, false, mapOf(pair = Pair(existingId, ShapeConfig(true, listOf())))))
 
         Assertions.assertNotNull(schema)
     }
@@ -38,7 +38,7 @@ class CatalogTest {
     fun testFromRandomUri(){
         val existingId = "https://data.vlaanderen.be/shacl/adresregister-SHACL.ttl"
 
-        val schema = getSchema(ShiftConfig(null, false, mapOf(pair = Pair(existingId, ShapeConfig(false, listOf())))))
+        val schema = getSchema(Context(null, false, mapOf(pair = Pair(existingId, ShapeConfig(false, listOf())))))
 
         Assertions.assertNotNull(schema)
     }
@@ -47,7 +47,7 @@ class CatalogTest {
     fun testFromFileSystem(){
         val existingId = "file://${Paths.get("").toAbsolutePath()}/src/test/resources/contact-SHACL.ttl"
 
-        val schema = getSchema(ShiftConfig(null, false, mapOf(pair = Pair(existingId, ShapeConfig(false, listOf())))))
+        val schema = getSchema(Context(null, false, mapOf(pair = Pair(existingId, ShapeConfig(false, listOf())))))
 
         Assertions.assertNotNull(schema)
     }
