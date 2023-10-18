@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="SHACL validity + Core check" />
+    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="SHACL validity + Core check">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +65,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="trunk" />
+        <entry key="$PROJECT_DIR$" value="version/v0.1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -101,7 +104,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/be/solidlab/shapeshift/typegen" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ShaclTest.shaclNonValidTest">
+  <component name="RunManager" selected="Gradle.ShaclTest.shaclValidTest">
     <configuration name="ShaclTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -224,8 +227,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ShaclTest.shaclNonValidTest" />
         <item itemvalue="Gradle.ShaclTest.shaclValidTest" />
+        <item itemvalue="Gradle.ShaclTest.shaclNonValidTest" />
         <item itemvalue="Gradle.ShaclTest" />
         <item itemvalue="Gradle.ShaclTest.shaclNonCoreTest" />
         <item itemvalue="Gradle.ShaclTest.isShaclCore" />
@@ -243,7 +246,7 @@
       <workItem from="1695804764323" duration="12521000" />
       <workItem from="1697018602826" duration="11335000" />
       <workItem from="1697543576822" duration="6725000" />
-      <workItem from="1697552448248" duration="10689000" />
+      <workItem from="1697552448248" duration="12583000" />
     </task>
     <task id="LOCAL-00001" summary="shapes using URI's instead of from filesystem + no mutations works">
       <created>1697035691486</created>
@@ -322,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697632624206</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="SHACL validity + Core check">
+      <created>1697632722230</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632722230</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
