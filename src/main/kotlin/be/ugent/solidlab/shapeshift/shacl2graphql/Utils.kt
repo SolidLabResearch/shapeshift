@@ -1,12 +1,14 @@
-package be.solidlab.shapeshift.shacl2graphql
+package be.ugent.solidlab.shapeshift.shacl2graphql
 
 import graphql.schema.GraphQLType
 import graphql.schema.GraphQLTypeUtil
 import org.apache.jena.graph.Graph
 import org.apache.jena.graph.Node
 import org.apache.jena.graph.Node_URI
+import org.apache.jena.shacl.ShaclValidator
 import org.apache.jena.shacl.Shapes
 import org.apache.jena.shacl.engine.TargetType
+import org.apache.jena.shacl.lib.ShLib
 import org.apache.jena.shacl.parser.NodeShape
 import java.net.URI
 import java.util.*
@@ -45,6 +47,19 @@ internal fun Shapes.getMatchingShape(shClass: Node_URI): NodeShape? {
             target.targetType == TargetType.targetClass && target.`object` == shClass
         }
     }?.let { it as NodeShape }
+}
+
+internal val SHACL_CORE_SHAPE= object {}.javaClass.getResource("/shacl-core.ttl")?.toURI().toString()
+internal fun Graph.isShaclCore(): Boolean {
+    val coreShape = Shapes.parse(SHACL_CORE_SHAPE)
+    return ShaclValidator.get().conforms(coreShape,this)
+}
+
+internal val SHACL_VALID_SHAPE= object {}.javaClass.getResource("/shacl-shacl.ttl")?.toURI().toString()
+internal fun Graph.isShaclValid(): Boolean {
+    val coreShape = Shapes.parse(SHACL_VALID_SHAPE)
+    ShLib.printReport(ShaclValidator.get().validate(coreShape,this))
+    return ShaclValidator.get().conforms(coreShape,this)
 }
 
 internal fun propertyNameFromPath(path: String): String {
