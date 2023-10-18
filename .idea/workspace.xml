@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="refactors related to publishing v 0.1">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
-    </list>
+    <list default="true" id="2ce1ffe6-2834-46ee-b446-302acde8bfaa" name="Changes" comment="SHACL validity + Core check" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,33 +76,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/koen_ugent/idLab/shapeshift/src/test/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/koen_ugent/idLab/shapeshift/src/test/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/be/solidlab/shapeshift/typegen" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.shapeshift [publishShapeshiftPublicationToSonatypeRepository]">
-    <configuration name="CatalogTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ShaclTest.shaclNonValidTest">
+    <configuration name="ShaclTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -117,7 +115,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;CatalogTest&quot;" />
+            <option value="&quot;ShaclTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -128,7 +126,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="CatalogTest.testFromFileSystem" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ShaclTest.isShaclCore" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -141,7 +139,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;CatalogTest.testFromFileSystem&quot;" />
+            <option value="&quot;ShaclTest.isShaclCore&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -152,7 +150,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="CatalogTest.testFromRandomUri" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ShaclTest.shaclNonCoreTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -165,7 +163,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;CatalogTest.testFromRandomUri&quot;" />
+            <option value="&quot;ShaclTest.shaclNonCoreTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -176,57 +174,61 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="shapeshift [generatePomFileForShapeshiftPublication]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ShaclTest.shaclNonValidTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="generatePomFileForShapeshiftPublication" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ShaclTest.shaclNonValidTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="shapeshift [publishShapeshiftPublicationToSonatypeRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ShaclTest.shaclValidTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishShapeshiftPublicationToSonatypeRepository" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ShaclTest.shaclValidTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.shapeshift [publishShapeshiftPublicationToSonatypeRepository]" />
-        <item itemvalue="Gradle.shapeshift [generatePomFileForShapeshiftPublication]" />
-        <item itemvalue="Gradle.CatalogTest" />
-        <item itemvalue="Gradle.CatalogTest.testFromRandomUri" />
-        <item itemvalue="Gradle.CatalogTest.testFromFileSystem" />
+        <item itemvalue="Gradle.ShaclTest.shaclNonValidTest" />
+        <item itemvalue="Gradle.ShaclTest.shaclValidTest" />
+        <item itemvalue="Gradle.ShaclTest" />
+        <item itemvalue="Gradle.ShaclTest.shaclNonCoreTest" />
+        <item itemvalue="Gradle.ShaclTest.isShaclCore" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +242,8 @@
       <updated>1695804763304</updated>
       <workItem from="1695804764323" duration="12521000" />
       <workItem from="1697018602826" duration="11335000" />
-      <workItem from="1697543576822" duration="4774000" />
+      <workItem from="1697543576822" duration="6725000" />
+      <workItem from="1697552448248" duration="10689000" />
     </task>
     <task id="LOCAL-00001" summary="shapes using URI's instead of from filesystem + no mutations works">
       <created>1697035691486</created>
@@ -270,7 +273,56 @@
       <option name="project" value="LOCAL" />
       <updated>1697544711797</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactors related to publishing v 0.1">
+      <created>1697548445773</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697548445773</updated>
+    </task>
+    <task id="LOCAL-00006" summary="SHACL validity + Core check">
+      <created>1697632423470</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632423470</updated>
+    </task>
+    <task id="LOCAL-00007" summary="SHACL validity + Core check">
+      <created>1697632436368</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632436368</updated>
+    </task>
+    <task id="LOCAL-00008" summary="SHACL validity + Core check">
+      <created>1697632509790</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632509790</updated>
+    </task>
+    <task id="LOCAL-00009" summary="SHACL validity + Core check">
+      <created>1697632517080</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632517080</updated>
+    </task>
+    <task id="LOCAL-00010" summary="SHACL validity + Core check">
+      <created>1697632533858</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632533858</updated>
+    </task>
+    <task id="LOCAL-00011" summary="SHACL validity + Core check">
+      <created>1697632624206</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1697632624206</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +354,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="shapes using URI's instead of from filesystem + no mutations works" />
     <MESSAGE value="refactors related to publishing v 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactors related to publishing v 0.1" />
+    <MESSAGE value="SHACL validity + Core check" />
+    <option name="LAST_COMMIT_MESSAGE" value="SHACL validity + Core check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

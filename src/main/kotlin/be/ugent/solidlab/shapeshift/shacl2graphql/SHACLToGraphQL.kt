@@ -11,7 +11,6 @@ import org.apache.jena.shacl.Shapes
 import org.apache.jena.shacl.parser.NodeShape
 import org.apache.jena.sparql.graph.GraphFactory
 import org.apache.jena.vocabulary.RDF
-import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
@@ -39,13 +38,22 @@ object SHACLToGraphQL {
             } else {
                 RDFDataMgr.read(shapeSubGraph, uri)
             }
-            shapeSubGraph.find()
-                .forEach {
-                    if (it.predicateMatches(RDF.type.asNode())) {
-                        graph.add(Triple.create(it.subject, importedFrom, NodeFactory.createURI(uri)))
+            if(shapeSubGraph.isShaclValid() && (if (config.strict) shapeSubGraph.isShaclCore() else true)){
+                shapeSubGraph.find()
+                    .forEach {
+                        if (it.predicateMatches(RDF.type.asNode())) {
+                            graph.add(Triple.create(it.subject, importedFrom, NodeFactory.createURI(uri)))
+                        }
+                        graph.add(it)
                     }
-                    graph.add(it)
+            } else {
+                if(!shapeSubGraph.isShaclValid()){
+                     println("Shacl File $uri is not valid Shacl, ignored")
+                } else {
+                    println("Shacl File $uri contains non-core Shacl constraints, ignored")
                 }
+            }
+
         }
         val context =
             ParseContext(Shapes.parse(graph), config.shapeConfigs.mapKeys { entry -> NodeFactory.createURI(entry.key) })
@@ -74,18 +82,6 @@ object SHACLToGraphQL {
             it !is GraphQLDirective || setOf("property", "is", "identifier").contains(it.name)
         })
         return schemaPrinter.print(schema)
-    }
-
-    private fun downloadFromURL(url: URL) : InputStream {
-        return url.openStream()
-    }
-
-    private fun downloadFromCatalog(id: String, catalogUrl: String) : InputStream {
-        val packageURL = URL("$catalogUrl/api/packages/${URLEncoder.encode(id, "UTF-8")}/download")
-        val conn = packageURL.openConnection() as HttpURLConnection
-        conn.requestMethod = "GET";
-        conn.setRequestProperty("Accept", "text/turtle")
-        return conn.inputStream
     }
 
     private fun catalogUrl(id: String, catalogUrl: String) : String {
