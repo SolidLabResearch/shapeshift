@@ -5,11 +5,14 @@ import graphql.schema.GraphQLTypeUtil
 import org.apache.jena.graph.Graph
 import org.apache.jena.graph.Node
 import org.apache.jena.graph.Node_URI
+import org.apache.jena.riot.Lang
+import org.apache.jena.riot.RDFDataMgr
 import org.apache.jena.shacl.ShaclValidator
 import org.apache.jena.shacl.Shapes
 import org.apache.jena.shacl.engine.TargetType
 import org.apache.jena.shacl.lib.ShLib
 import org.apache.jena.shacl.parser.NodeShape
+import org.apache.jena.sparql.graph.GraphFactory
 import java.net.URI
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
@@ -49,17 +52,22 @@ internal fun Shapes.getMatchingShape(shClass: Node_URI): NodeShape? {
     }?.let { it as NodeShape }
 }
 
-internal val SHACL_CORE_SHAPE= object {}.javaClass.getResource("/shacl-core.ttl")?.toURI().toString()
+
 internal fun Graph.isShaclCore(): Boolean {
-    val coreShape = Shapes.parse(SHACL_CORE_SHAPE)
+    val coreStream= object {}.javaClass.getResource("/shacl-core.ttl")?.openStream()
+    val coreGraph = GraphFactory.createDefaultGraph()
+    RDFDataMgr.read(coreGraph, coreStream, Lang.TURTLE)
+    val coreShape = Shapes.parse(coreGraph)
     return ShaclValidator.get().conforms(coreShape,this)
 }
 
-internal val SHACL_VALID_SHAPE= object {}.javaClass.getResource("/shacl-shacl.ttl")?.toURI().toString()
 internal fun Graph.isShaclValid(): Boolean {
-    val coreShape = Shapes.parse(SHACL_VALID_SHAPE)
-    ShLib.printReport(ShaclValidator.get().validate(coreShape,this))
-    return ShaclValidator.get().conforms(coreShape,this)
+    val validStream = object {}.javaClass.getResource("/shacl-shacl.ttl")?.openStream()
+    val validGraph = GraphFactory.createDefaultGraph()
+    RDFDataMgr.read(validGraph, validStream, Lang.TURTLE)
+    val validShape = Shapes.parse(validGraph)
+    ShLib.printReport(ShaclValidator.get().validate(validShape,this))
+    return ShaclValidator.get().conforms(validShape,this)
 }
 
 internal fun propertyNameFromPath(path: String): String {
