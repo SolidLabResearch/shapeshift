@@ -53,6 +53,7 @@ internal fun Shapes.getMatchingShape(shClass: Node_URI): NodeShape? {
 }
 
 
+
 internal fun Graph.isShaclCore(): Boolean {
     val coreStream= object {}.javaClass.getResource("/shacl-core.ttl")?.openStream()
     val coreGraph = GraphFactory.createDefaultGraph()
